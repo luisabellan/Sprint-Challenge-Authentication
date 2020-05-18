@@ -4,7 +4,7 @@ const helmet = require('helmet');
 
 const authenticate = require('../auth/authenticate-middleware.js');
 const authRouter = require('../auth/auth-router.js');
-//const usersRouter = require("../users/users-router")
+const usersRouter = require("../users/users-router")
 const jokesRouter = require('../jokes/jokes-router.js');
 
 
@@ -21,7 +21,7 @@ server.use('/auth', authRouter);
 server.use('/jokes',  jokesRouter);
 
 server.get("/", (req, res, next) => {
-	res.json({
+	res.status(200).json({
 		message: "Welcome to our API",
 	})
 })
