@@ -1,4 +1,3 @@
-// no functions used here
 /*
 - when making a GET request to the `/` endpoint 
   the API should respond with status code 200 
@@ -6,7 +5,7 @@
 */
 const request = require("supertest"); // calling it "request" is a common practice
 
-const server = require("../index.js"); //
+const server = require("../api/server");
 const db = require("../database/dbConfig");
 beforeEach(async () => {
   await db.seed.run();
@@ -18,7 +17,7 @@ afterAll(async () => {
 
 describe("server.js", () => {
   // http calls made with supertest return promises, we can use async/await if desired
-  describe("index route", () => {
+
     it("should return an OK status code from the index route", async () => {
       const expectedStatusCode = 200;
 
@@ -41,5 +40,5 @@ describe("server.js", () => {
 
       expect(response.type).toEqual("application/json");
     });
-  });
+ 
 });

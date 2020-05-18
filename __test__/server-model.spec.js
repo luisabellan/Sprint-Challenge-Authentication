@@ -6,7 +6,7 @@
 */
 const request = require("supertest"); // calling it "request" is a common practice
 
-const server = require("../index.js"); //
+const server = require("../api/server"); //
 const db = require("../database/dbConfig");
 
 beforeEach(async () => {
@@ -16,7 +16,8 @@ beforeEach(async () => {
 afterAll(async () => {
   await db.destroy();
 });
-describe("index.js", () => {
+
+describe("server-model.js", () => {
   // http calls made with supertest return promises, we can use async/await if desired
 
   it("should return a JSON object from the index route", async () => {

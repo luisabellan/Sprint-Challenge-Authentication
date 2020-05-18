@@ -20,10 +20,10 @@ afterAll(async () => {
 describe("user-model.js", () => {
   it("create function", async () => {
     let data = {
-        username: "Paul",
-        password:'abc123',
-        role: "admin",
-      
+      id: 1,
+      username: "Paul",
+      password: "abc123",
+      role: "admin",
     };
 
     await db("users").insert(data);
@@ -33,18 +33,18 @@ describe("user-model.js", () => {
     expect(user).toEqual({
       id: 1,
       username: "Paul",
-      password: 'abc123',
-        role: "admin",
-      
+      password: "abc123",
+      role: "admin",
     });
   });
 
   it("update function", async () => {
     let data = {
       username: "Paul",
+      password: "abc123",
       role: "admin",
     };
-    let id = "1";
+    let id = 1;
 
     await db("users").where({ id }).insert(data);
     await db("users").where({ id }).update({ username: "Paul" });
@@ -55,7 +55,7 @@ describe("user-model.js", () => {
     // status(204).del()
     let data = {
       username: "Paco",
-      password:'abc123',
+      password: "abc123",
       role: "normal",
     };
 
