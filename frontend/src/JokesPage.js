@@ -26,7 +26,7 @@ const JokesPage = (props) => {
   return (
     <>
       
-      <JokesList users={usersList} updateUsers={setJokesList} />
+      <JokesList users={usersList} updateJokes={setJokesList} />
    
 
     </>

@@ -1,15 +1,16 @@
 const express = require("express")
 const userModel = require("./users-model")
 
+// GET USERS
 const router = express.Router()
 router.get("/",  async (req, res, next) => {
 	try {
-		console.log("session:", req.session)
 		res.json(await userModel.find())
 	} catch(err) {
 		next(err)
 	}
 })
+// GET USER BY ID
 router.get("/:id",  async (req, res, next) => {
 	try {
 		res.json(await userModel.findById(req.params.id))
@@ -18,6 +19,24 @@ router.get("/:id",  async (req, res, next) => {
 	}
 })
 
+// CREATE USER
+router.post("/", async (req, res, next) => {
+	try {
+		const user = await userModel.add(req.body)
+		res.status(201).json(user)
+	} catch (err) {
+		next(err)
+	}
+})
+// DELETE USER
+router.delete("/:id", async (req, res, next) => {
+	try {
+		const user = await userModel.findById(req.params.id)
+		res.status(204).json(user)
+	} catch (err) {
+		next(err)
+	}
+})
 // UPDATE USER
 router.put("/:id", (req, res) => {
 	if (!req.body.username) {
@@ -25,10 +44,15 @@ router.put("/:id", (req, res) => {
 			errorMessage: "Please provide username for the user.",
 		});
 	}
+	if (!req.body.role) {
+		return res.status(400).json({
+			errorMessage: "Please provide role for the user.",
+		});
+	}
 
-	Users.validateUser(req.params.id)
+	userModel.validateUser(req.params.id)
 
-	Users.update(req.params.id, req.body)
+	userModel.update(req.params.id, req.body)
 		.then((user) => {
 		//	console.log(res);
 

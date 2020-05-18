@@ -26,7 +26,7 @@ async function update(id, data) {
 }
 
 async function validateUser(id) {
-  const user = findById(id)
+  findById(id)
     .then((user) => {
       if (user.length === 0) {
         return res.status(404).json({
