@@ -45,7 +45,7 @@ function restrict(role = "normal") {
 }
 
 
-module.exports = (req, res, next) => {
+/* module.exports = (req, res, next) => {
   res.status(401).json({ you: 'shall not pass!' });
-}; 
-//module.exports = restrict
+};  */
+module.exports = restrict

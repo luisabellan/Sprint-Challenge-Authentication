@@ -18,7 +18,8 @@ server.use(cors({
 server.use(express.json());
 
 server.use('/auth', authRouter);
-server.use('/jokes',  jokesRouter);
+server.use('/api/jokes',  jokesRouter);
+server.use('/api/users',  usersRouter);
 
 server.get("/", (req, res, next) => {
 	res.status(200).json({
