@@ -127,7 +127,11 @@ const JokesList = ({ jokes }) => {
         <div className="spacer" />
       </div>
     );
-  }
 }
+
+
+
+
+
 
 export default JokesList;
