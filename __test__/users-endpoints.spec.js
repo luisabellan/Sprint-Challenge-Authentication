@@ -33,7 +33,7 @@ describe("users integration tests", () => {
     // find the user in the database by its username then
     let user = db("user").where({ username: data.username }).first();
     if (!user || !bcrypt.compareSync(credentials.password, data.password)) {
-      return console.log({ error: "Incorrect credentials" });
+      return console.log("Incorrect credentials");
     }
 
     // the user is valid, continue on
