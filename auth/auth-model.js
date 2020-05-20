@@ -5,13 +5,13 @@ async function add(data) {
 	return findById(id)
 }
 
-function findById(id) {
+ function findById(id) {
 	return db("sessions")
 		.where("id", id)
 		.first()
 }
 
-function deleteById(id) {
+ function deleteById(id) {
 	return db("sessions")
 		.where("id", id)
 		.del()
