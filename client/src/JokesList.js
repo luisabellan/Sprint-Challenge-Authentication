@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios'
 import { axiosWithAuth } from "./utils/axiosWithAuth";
 
 const initialJoke = {
@@ -6,19 +7,34 @@ const initialJoke = {
   status: "",
 };
 
-const JokesList = ({ jokes }) => {
+// { jokes }
+const JokesList = ({jokes}) => {
   // console.log(jokes);
   const [editing, setEditing] = useState(false);
-  const [adding, setAdding] = useState(true);
+  const [adding, setAdding] = useState(false);
   const [jokeToEdit, setJokeToEdit] = useState(initialJoke);
   const [jokeToAdd, setJokeToAdd] = useState(initialJoke);
+   const [myJokes, setMyJokes] = useState([])
+   
 
- /*  const logout = () => {
+   axiosWithAuth()    
+   .get(`/api/jokes/`)
+    .then(res => {
+     setMyJokes(myJokes);
+    
+     
+   }) 
+   .catch(err => {
+     console.log(err);
+   });
+
+
+   const logout = () => {
    
 
     console.log("logout")
-     */
-    /*   // logout joke 
+     
+     // logout joke 
       axiosWithAuth()    
         .put(`/api/jokes/logout}`)
          .then(res => {
@@ -29,16 +45,16 @@ const JokesList = ({ jokes }) => {
         .catch(err => {
           console.log(err);
         });
-    } */
+    } 
 
-    /*   const editJoke = joke => {
+      const editJoke = joke => {
         setEditing(true);
         setJokeToEdit(joke);
         
-      }; */
+      }; 
 
 
-    /*   const saveEdit = (e, joke) => {
+       const saveEdit = (e, joke) => {
         e.preventDefault();
         // Make a put request to save your updated joke
         // think about where will you get the id from...
@@ -56,9 +72,9 @@ const JokesList = ({ jokes }) => {
           .catch(err => {
             console.log(err);
           });
-      }; */
+      }; 
 
-    /*   const deleteJoke = joke => {
+      const deleteJoke = joke => {
         // make a delete request to delete this joke
         axiosWithAuth()
         .delete(`/api/jokes/${joke.joke}`)
@@ -71,8 +87,8 @@ const JokesList = ({ jokes }) => {
         .catch(err => {
           console.log(err);
         });
-      }; */
-    /* 
+      }; 
+    
       const addJoke = (e,joke) => {
       e.preventDefault()
        
@@ -86,22 +102,22 @@ const JokesList = ({ jokes }) => {
         .catch(err => {
           console.log(err);
         });
-      }; */
+      }; 
 
 
     return (
       <div className="jokes-wrap">
         <p>jokes</p>
 
-        {console.log(jokes)}
+        {console.log(myJokes)}
         <ul>
           {
           
-            jokes.map((joke) => (
+            myJokes.map((joke) => (
               <li key={joke.id}>
                 <span>
                   {" "}
-                  {joke.joke}
+                  {joke}
                  
                   
                 </span>
@@ -118,7 +134,7 @@ const JokesList = ({ jokes }) => {
         <button
           onClick={(props) => {
             localStorage.removeItem("token");
-            window.location.replace("/jokes");
+            window.location.replace("/api/jokes");
           }
           }
         >

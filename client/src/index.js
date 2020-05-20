@@ -15,7 +15,7 @@ const App = () => {
 		<main>
 			<nav>
 				<Link to="/">Home</Link>
-				<Link to="/users">Users</Link>
+				<Link to="/jokes">Jokes</Link>
 				<Link to="/login">Login</Link>
 				<Link to="/register">Register</Link>
 				<Link to="/logout">Logout</Link>

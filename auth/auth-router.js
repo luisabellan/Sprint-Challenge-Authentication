@@ -54,7 +54,7 @@ router.post("/login", async (req, res, next) => {
 			sessionId: session.id,
 			username: user.username,
 			role: user.role,
-		}, process.env.JWT_SECRET)
+		}, process.env.JWT_SECRET || "La vida es sueño")
 
 		res.cookie("token", token)
 		res.json({

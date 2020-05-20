@@ -3,14 +3,14 @@ import { axiosWithAuth } from "./utils/axiosWithAuth";
 import JokesList from "./JokesList";
 
 
-const JokesPage = (props) => {
+const JokesPage = ({jokes}) => {
   const [usersList, setJokesList] = useState([]);
   // fetch your data from the server when the component mounts
 
   useEffect(() => {
     // make a GET request to fetch the users data 
     axiosWithAuth()
-      .get("/api/jokes")
+      .get("/api/jokes" )
       .then(res => {
         // set that data to the usersList state property
         setJokesList(res.data);
@@ -26,7 +26,7 @@ const JokesPage = (props) => {
   return (
     <>
       
-      <JokesList users={usersList} updateJokes={setJokesList} />
+      <JokesList jokes={JokesList} updateJokes={setJokesList} />
    
 
     </>

@@ -19,7 +19,7 @@ function restrict(role = "normal") {
 				return res.status(401).json(authError)
 			}
 
-			jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+			jwt.verify(token, process.env.JWT_SECRET || "La vida es sueño", async (err, decoded) => {
 				try {
 					// validate role based on a scale, so admins can
 					// still access resources restricted to normal users
@@ -46,6 +46,7 @@ function restrict(role = "normal") {
 
 
 /* module.exports = (req, res, next) => {
+	
   res.status(401).json({ you: 'shall not pass!' });
-};  */
+};   */
 module.exports = restrict
