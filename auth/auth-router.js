@@ -1,5 +1,4 @@
 const express = require("express")
-const dotenv = require("dotenv")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const authModel = require("./auth-model")
@@ -53,8 +52,8 @@ router.post("/login", async (req, res, next) => {
 		const token = jwt.sign({
 			sessionId: session.id,
 			username: user.username,
-			userRole: user.role,
-		}, process.env.JWT_SECRET || "La vida es sueño")
+			role: user.role,
+		}, process.env.JWT_SECRET)
 
 		res.cookie("token", token)
 		res.json({
@@ -64,8 +63,8 @@ router.post("/login", async (req, res, next) => {
 		next(err)
 	}
 })
-
-router.get("/logout",  async (req, res, next) => {
+// restrict()
+router.get("/logout", restrict(),  async (req, res, next) => {
 	try {
 		await authModel.deleteById(req.session.id)
 

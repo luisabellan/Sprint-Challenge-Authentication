@@ -11,6 +11,9 @@ async function add(user) {
 function find() {
   return db("users").select("id", "username", "role"); // exclude password for security reasons
 }
+function findBy(filter) {
+  return db("users").where({ filter }).first();
+}
 
 function findById(id) {
   return db("users").where({ id }).first();
@@ -47,6 +50,7 @@ module.exports = {
   add,
   find,
   findById,
+  findBy,
   findByUsername,
   update,
   remove,

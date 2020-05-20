@@ -21,7 +21,7 @@ const JokesList = ({ jokes }) => {
   useEffect(() => {
     // make a GET request to fetch the users data 
     axios
-      .get("http://localhost:3300/api/jokes")
+      .get("http://localhost:3300/jokes")
       .then(res => {
         // set that data to the usersList state property
         setJokesList(res.data);
@@ -41,7 +41,7 @@ const JokesList = ({ jokes }) => {
       */
   /*   // logout joke 
     axiosWithAuth()    
-      .put(`/api/jokes/logout}`)
+      .put(`/jokes/logout}`)
        .then(res => {
         setJokeToEdit(jokeToEdit);
        
@@ -68,7 +68,7 @@ const JokesList = ({ jokes }) => {
       
       // edit joke 
       axiosWithAuth()    
-        .put(`/api/jokes/${jokeToEdit.id}`, jokeToEdit)
+        .put(`/jokes/${jokeToEdit.id}`, jokeToEdit)
         .then(res => {
           setJokeToEdit(jokeToEdit);
          editJoke(jokeToEdit)
@@ -82,7 +82,7 @@ const JokesList = ({ jokes }) => {
   /*   const deleteJoke = joke => {
       // make a delete request to delete this joke
       axiosWithAuth()
-      .delete(`/api/jokes/${joke.joke}`)
+      .delete(`/jokes/${joke.joke}`)
       .then(res => {
         console.log(res);
         setEditing(false)

@@ -12,7 +12,7 @@ afterAll(async () => {
 
 describe("jokes integration tests", () => {
   it("GET /jokes", async () => {
-    const res = await supertest(server).get("/api/jokes");
+    const res = await supertest(server).get("/jokes");
     expect(res.type).toBe("application/json");
   });
 });

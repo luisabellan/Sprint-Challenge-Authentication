@@ -1,7 +1,3 @@
-/* 
-  complete the middleware code to check if the user is logged in
-  before granting access to the next middleware/route handler
-*/
 const jwt = require("jsonwebtoken")
 const authModel = require("../auth/auth-model")
 
@@ -19,27 +15,22 @@ function restrict(role = "normal") {
 				return res.status(401).json(authError)
 			}
 
-			jwt.verify(token, process.env.JWT_SECRET || "La vida es sueño", async (err, decoded) => {
+			jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
 				try {
-/* 					// validate role based on a scale, so admins can
+					// validate role based on a scale, so admins can
 					// still access resources restricted to normal users
 					if (err || roles.indexOf(decoded.role) < roles.indexOf(role)) {
 						return res.status(401).json(authError)
-					} */
-					jwt.verify(token, process.env.JWT_SECRET  || "La vida es sueño", (err, decodedPayload) => {
-						if (err || decoded.userRole !== role) {
-							return res.status(401).json(authError)
-						}
+					}
+					
 					// look up session from database and make sure it's not expired
-					req.session =  authModel.findById(decoded.sessionId)
+					req.session = await authModel.findById(decoded.sessionId)
 					if (!req.session || new Date(req.session.expires) <= new Date()) {
 						return res.status(401).json(authError)
 					}
 
 					next()
-				})
-				
-			}catch(err) {
+				} catch(err) {
 					next(err)
 				}
 			})
@@ -49,9 +40,4 @@ function restrict(role = "normal") {
 	}
 }
 
-
-/* module.exports = (req, res, next) => {
-	
-  res.status(401).json({ you: 'shall not pass!' });
-};   */
 module.exports = restrict

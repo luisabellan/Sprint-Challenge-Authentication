@@ -5,7 +5,7 @@
 */
 const request = require("supertest"); // calling it "request" is a common practice
 
-const server = require("../api/server");
+const server = require("../server");
 const db = require("../database/dbConfig");
 beforeEach(async () => {
   await db.seed.run();

@@ -13,7 +13,7 @@ export default function() {
 		const payload = { username, password, role }
 
 		setStatus("")
-		axios.post("http://localhost:3300/api/register", payload)
+		axios.post("http://localhost:3300/register", payload)
 			.then(() => setStatus("Account created!"))
 			.catch((err) => setStatus(err.data))
 	}
