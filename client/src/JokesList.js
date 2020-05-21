@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { axiosWithAuth } from "./utils/axiosWithAuth";
+import dotenv from 'dotenv'
 
 const initialJoke = {
   id: "",
@@ -21,7 +22,7 @@ const JokesList = ({ jokes }) => {
   useEffect(() => {
     // make a GET request to fetch the users data 
     axios
-      .get("http://localhost:3300/jokes")
+      .get(`http://localhost:${process.env.PORT}/jokes`)
       .then(res => {
         // set that data to the usersList state property
         setJokesList(res.data);

@@ -7,6 +7,7 @@ export default function(props) {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
 	const [status, setStatus] = useState("")
+	import dotenv from 'dotenv'
 	
 	
 	const handleSubmit = (evt) => {
@@ -18,7 +19,7 @@ export default function(props) {
 		setStatus("")
 
 		// `withCredentials` option is required to automatically save/send cookies
-		axios.post("http://localhost:3300/auth/login", payload, { withCredentials: true })
+		axios.post(`http://localhost:${process.env.PORT}/auth/login`, payload, { withCredentials: true })
 			.then(() => {
 				// cookie is set automatically when logged in,
 				// pull the token out and decode it

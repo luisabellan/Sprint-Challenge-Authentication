@@ -1,5 +1,5 @@
 const knex = require('knex');
-
+const dotenv = require('dotenv')
 const config = require('../knexfile.js');
 
 // if the environment variable is not set, default to 'development'

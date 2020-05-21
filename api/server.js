@@ -5,10 +5,11 @@ const cors = require("cors")
 const authRouter = require('../auth/auth-router.js');
 const usersRouter = require("../users/users-router")
 const jokesRouter = require('../jokes/jokes-router.js');
+const dotenv = require('dotenv')
 
 
 const server = express()
-const port = process.env.PORT || 5000
+const port = process.env.PORT
 
 server.use(helmet())
 server.use(cookieParser())
